@@ -13,11 +13,10 @@ const Herobody = () => {
       >
         <div className="sm:w-1/2 flex flex-col items-center justify-center space-y-1">
           <h3 className="md:text-5xl mt-10 sm:text-4xl text-3xl font-semibold">
-            Dhrish Parekh👋
+            Rent-A-Car
           </h3>
           <div className="flex items-center justify-center space-x-1 mb-10 md:mb-0 sm:mb-5 ">
-            <h5 className="w-24 font-extralight h-0.5 bg-gray-400 "></h5>
-            <h4 className="md:text-lg">Fullstack Developer</h4>
+               
           </div>
           <div className="space-y-7">
             <p className="text-gray-500 dark:text-gray-300 font-light ">
@@ -36,11 +35,11 @@ const Herobody = () => {
         </div>
         <div className="sm:w-1/2 md:h-[60vh] h-[30vh]  flex items-center justify-center mb-10 md:mb-0">
           <Image
-            src={"/images/profile.jpg"}
+            src={"/carlanding.png"}
             className="md:mt-20 image mb-6 md:mb-0"
             alt="PFP"
-            width={300}
-            height={300}
+            width={500}
+            height={400}
           />
         </div>
       </div>
