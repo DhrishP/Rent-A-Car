@@ -19,6 +19,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import CarCard from "@/app/(catalog)/components/carCard";
+import MeetupForm from "@/app/(catalog)/components/meetupForm";
 
 type ProductCardProps = {
   data: CarList;
@@ -89,52 +90,16 @@ const ProductCard = ({ data }: ProductCardProps) => {
               <div className="flex justify-between space-x-10">
                 <div className="w-1/3 h-full">
                   <CarCard data={data} />
-                  
                 </div>
                 <div className="w-1/2">
-                    <form>
-                      <DialogHeader className="flex items-start">
-                        <DialogTitle>Contact Form</DialogTitle>
-                        <DialogDescription>Details to send to the owner</DialogDescription>
-                      </DialogHeader>
-                      <div className="flex flex-col space-y-4">
-                        <div className="flex flex-col space-y-1">
-                          <label htmlFor="name">Name</label>
-                          <input
-                            type="text"
-                            name="name"
-                            id="name"
-                            className="border border-gray-300 rounded-md p-2"
-                          />
-                        </div>
-                        <div className="flex flex-col space-y-1">
-                          <label htmlFor="email">Email</label>
-                          <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            className="border border-gray-300 rounded-md p-2"
-                          />
-                        </div>
-                        <div className="flex flex-col space-y-1">
-                          <label htmlFor="message">Message</label>
-                          <textarea
-                            name="message"
-                            id="message"
-                            className="border border-gray-300 rounded-md p-2"
-                          ></textarea>
-                        </div>
-                        <div className="flex flex-col space-y-1">
-                          <Button
-                            type="submit"
-                            className="bg-primary text-white hover:bg-secondary hover:text-primary"
-                          >
-                            Submit
-                          </Button>
-                        </div>
-                        </div>
-                    </form>
-                  </div>
+                  <DialogHeader className="flex items-start">
+                    <DialogTitle>Contact Form</DialogTitle>
+                    <DialogDescription>
+                      Details to send to the owner
+                    </DialogDescription>
+                  </DialogHeader>
+                  <MeetupForm carid={data.carId} />
+                </div>
               </div>
             </DialogContent>
           </div>

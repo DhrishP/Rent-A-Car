@@ -13,8 +13,31 @@ export type CarList = {
     createdAt: string;
     mileage: number;
     description: string;
+    carId: number;
   };
   
   export type Cars = {
     cars: CarList[];
+  };
+
+
+  export type LocationCar = {
+    location:{
+      latitude: number,
+      longitude: number
+    }
+
+  }
+
+  export type RequestOptions = {
+    method: string;
+    url: string;
+    params: {
+      latitude: string;
+      longitude: string;
+    };
+    headers: {
+      "X-RapidAPI-Key": string;
+      "X-RapidAPI-Host": string;
+    };
   };
