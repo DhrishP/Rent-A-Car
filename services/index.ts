@@ -1,6 +1,5 @@
 import { CarList, LocationCar, RequestOptions } from "@/types";
 import request, { gql } from "graphql-request";
-import axios from "axios";
 type locationresprops = {
   cars: LocationCar[];
 };
