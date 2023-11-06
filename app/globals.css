@@ -2,6 +2,33 @@
 @tailwind components;
 @tailwind utilities;
  
+/* *{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+/* .slide-in{
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height: 100vh;
+  background: #0f0f0f;
+  transform-origin: bottom;
+
+}
+.slide-out{
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height: 100vh;
+  background: #0f0f0f;
+  transform-origin: top;
+} */
+
+
 @layer base {
   :root {
     --background: 0 0% 100%;

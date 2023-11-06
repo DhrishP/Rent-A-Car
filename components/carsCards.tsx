@@ -87,12 +87,12 @@ const ProductCard = ({ data }: ProductCardProps) => {
                 <DialogTitle>Book your ride</DialogTitle>
                 <DialogDescription>Car details</DialogDescription>
               </DialogHeader>
-              <div className="flex justify-between space-x-10">
-                <div className="w-1/3 h-full">
+              <div className="flex justify-between items-center space-x-10">
+                <div className="w-1/3 ">
                   <CarCard data={data} />
                 </div>
-                <div className="w-1/2">
-                  <DialogHeader className="flex items-start">
+                <div className="w-1/2 h-[65vh]">
+                  <DialogHeader className="flex  ">
                     <DialogTitle>Contact Form</DialogTitle>
                     <DialogDescription>
                       Details to send to the owner

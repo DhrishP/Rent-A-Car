@@ -66,7 +66,7 @@ const Catalog = () => {
                   }}
                   placeholder="Choose a company.."
                 >
-                  <option value={''}></option>
+                  <option value={""}></option>
                   {companyList.map((company, i) => (
                     <>
                       <option key={i} value={`${company}`}>
@@ -77,8 +77,7 @@ const Catalog = () => {
                 </select>
               </div>
             </div>
-            <div>
-            </div>
+            <div></div>
           </div>
 
           <div className="flex flex-wrap justify-evenly">

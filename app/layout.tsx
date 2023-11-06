@@ -1,8 +1,11 @@
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ClerkProvider, SignedIn, SignedOut } from "@clerk/nextjs";
 import "./globals.css";
 import Nav from "@/components/nav";
+
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,19 +19,24 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body  className={inter.className}>
-          <SignedIn>
-          <Nav />
-          {children}
-          </SignedIn>
-          <SignedOut>
-            <SignedIn/>
-          </SignedOut>
-        </body>
-      </html>
-    </ClerkProvider>
+  
+      <ClerkProvider>
+        <html lang="en">
+          
+          <body className={inter.className}>
+            <SignedIn>
+             
+              <Nav />
+              {children}
+           
+            </SignedIn>
+            <SignedOut>
+              <SignedIn />
+            </SignedOut>
+          </body>
+        </html>
+      </ClerkProvider>
   );
 }

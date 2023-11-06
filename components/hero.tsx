@@ -1,8 +1,8 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { LeafyGreen, MoveDown } from "lucide-react";
+import { Car, CarFront, LeafyGreen, MoveDown } from "lucide-react";
 import Image from "next/image";
+import { GrCatalog, GrCatalogOption } from "react-icons/gr";
 
 const Herobody = () => {
   return (
@@ -15,20 +15,17 @@ const Herobody = () => {
           <h3 className="md:text-5xl mt-10 sm:text-4xl text-3xl font-semibold">
             Rent-A-Car
           </h3>
-          <div className="flex items-center justify-center space-x-1 mb-10 md:mb-0 sm:mb-5 ">
-               
-          </div>
+          <div className="flex items-center justify-center space-x-1 mb-10 md:mb-0 sm:mb-5 "></div>
           <div className="space-y-7">
             <p className="text-gray-500 dark:text-gray-300 font-light ">
-              Turning vision into reality with coding{" "}
-              <br className="md:hidden" /> and designing using{" "}
-              <br className="hidden md:block" /> awesome technologies. I also
-              write to <br /> document my life journey.
+              Drive your adventure with us
+              <br className="md:hidden" /> Easy rentals, diverse fleet. 
+            <br />  Your journey, your way.
             </p>
             <Button className="hover:bg-secondary hover:border-primary hover:text-primary border duration-150 transition ease-out">
-              <a href="#contact" className="flex items-center">
-                <h3>Say hello</h3>
-                <LeafyGreen className="ml-2 h-6 w-4" />
+              <a href="#catalog" className="flex items-center  space-x-1">
+                <h3>Catalog</h3>
+                <span className="text-lg text "><CarFront /></span>
               </a>
             </Button>
           </div>
@@ -45,8 +42,15 @@ const Herobody = () => {
       </div>
       <div className="flex items-center mt-20 md:mt-0  sm:mt-4   justify-center  space-x-2 ">
         <div>
-            <input type="input" placeholder="Location" className="bg-muted p-3 placeholder:pl-1 rounded-l-xl"/> 
-            <input type="date"   className="bg-muted p-3 rounded-r-lg text-secondary-foreground" />
+          <input
+            type="input"
+            placeholder="Location"
+            className="bg-muted p-3 placeholder:pl-1 rounded-l-xl"
+          />
+          <input
+            type="date"
+            className="bg-muted p-3 rounded-r-lg text-secondary-foreground"
+          />
         </div>
       </div>
     </>

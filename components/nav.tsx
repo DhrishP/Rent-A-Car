@@ -33,7 +33,7 @@ const Nav = () => {
           <a href="/" className="px-4 hover:underline transition-colors">
             Home
           </a>
-          <a href="#" className="px-4 hover:underline transition-colors">
+          <a href="/carform" className="px-4 hover:underline transition-colors">
             About
           </a>
           <a href="#" className="px-4 hover:underline transition-colors">
