@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import React, { FormEvent, useEffect, useState } from "react";
-import { getLocation } from "@/services";
+import { BookCar, getLocation } from "@/services";
 import { RequestOptions } from "@/types";
 import {
   Popover,
@@ -11,6 +11,9 @@ import {
 import axios from "axios";
 import { CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+
 type TimeZoneData = {
   TimeZoneId: string;
   GMT_offset: number;
@@ -21,44 +24,52 @@ type TimeZoneData = {
 };
 
 type FormDataType = {
-  location: TimeZoneData;
+  location: string;
   starttime: string;
   endtime: string;
   linkedin: string;
   resumeURL: string;
   contactNo: number;
+  car_id: string;
 };
-const MeetupForm = ({ carid }: { carid: number }) => {
+const MeetupForm = ({ carid, id }: { carid: number; id: string }) => {
   const [Location, setLocation] = useState<TimeZoneData>(); // to get the reversed geolocation
   const [Mounted, setMounted] = useState(false); // for hydration error
   const [FormDate, SetFormDate] = useState<Date | undefined>(new Date()); // for date selection
-  const [FormData, setFormData] = useState({
-    location: {},
+  const [FormData, setFormData] = useState<FormDataType>({
+    location: "",
     starttime: "",
     endtime: "",
     linkedin: "",
     resumeURL: "",
     contactNo: 0,
+    car_id: id,
   });
+  const router = useRouter();
   useEffect(() => {
     setMounted(true);
     const getcarLocation = async () => {
       const res: RequestOptions[] | undefined | null = await getLocation();
       if (typeof res === "undefined" || !res) return console.log("error");
-      if(Location?.CountryId != ''){
-      const locationres = await axios.request(res[carid]);
-      if (!locationres) return console.log("error");
-      setLocation(locationres.data);
+      if (Location?.CountryId != "") {
+        const locationres = await axios.request(res[carid]);
+        if (!locationres) return toast.error("Error in fetching location");
+        setLocation(locationres.data);
       }
     };
     getcarLocation();
   }, []);
   if (!Mounted) return null;
 
-  const handleSubmit = async (e:FormEvent) => {
-    e.preventDefault()
-    console.log(FormData);
-    console.log(FormDate);
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    const res = await BookCar(
+      FormData,
+      FormDate ? FormDate.toISOString() : new Date().toISOString()
+    );
+    if (res) return toast.error("Error in booking the car");
+    toast.success("Car Booked Successfully");
+    router.refresh();
   };
 
   return (
@@ -70,7 +81,7 @@ const MeetupForm = ({ carid }: { carid: number }) => {
             onChange={(e) =>
               setFormData({
                 ...FormData,
-                location: Location ? Location : e.target.value,
+                location: Location ? Location.CountryId : e.target.value,
               })
             }
             className="py-1 rounded-md bg-gray-200"
@@ -127,7 +138,6 @@ const MeetupForm = ({ carid }: { carid: number }) => {
               onChange={(e) =>
                 setFormData({ ...FormData, endtime: e.target.value })
               }
-
               className="border border-gray-300 rounded-md py-2 px-4"
             />
           </div>

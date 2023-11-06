@@ -3,6 +3,17 @@ import request, { gql } from "graphql-request";
 type locationresprops = {
   cars: LocationCar[];
 };
+
+type FormDataType = {
+  location: string;
+  starttime: string;
+  endtime: string;
+  linkedin: string;
+  resumeURL: string;
+  contactNo: number;
+  car_id: string;
+};
+
 export const getCars = async () => {
   const query = gql`
     query CarList {
@@ -73,3 +84,34 @@ export const getLocation = async () => {
     console.log(err);
   }
 };
+
+
+
+export const BookCar = async (formdata:FormDataType, date:string) => {
+  const mutationQuery = gql`
+    mutation MyMutation {
+      createBooking(
+        data: {
+          contactNo: ${formdata.contactNo},
+          linkedUrl: "${formdata.linkedin}",
+          resumeUrl: "${formdata.resumeURL}",
+          endTime: "${formdata.endtime}",
+          pickupCoords: "${formdata.location}",
+          startTime: "${formdata.starttime}",
+          carId: { connect: { id: "${formdata.car_id}" } },
+          date: "${date}"
+        }
+      ) {
+        id
+      }
+    }
+  `;
+
+  const res = await request(
+    process.env.NEXT_PUBLIC_GRAHPQL_ENDPOINT as string,
+    mutationQuery
+  );
+
+  return res;
+};
+

@@ -98,7 +98,7 @@ const ProductCard = ({ data }: ProductCardProps) => {
                       Details to send to the owner
                     </DialogDescription>
                   </DialogHeader>
-                  <MeetupForm carid={data.carId} />
+                  <MeetupForm carid={data.carId} id={data.id}/>
                 </div>
               </div>
             </DialogContent>
