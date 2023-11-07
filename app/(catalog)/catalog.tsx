@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { getCars } from "@/services/index";
 import { CarList, Cars } from "@/types";
 import ProductCard from "@/components/carsCards";
+import { CarFront, CarFrontIcon } from "lucide-react";
+import { Triangle } from "react-loader-spinner";
 
 const Catalog = () => {
   const [CarList, SetCarList] = useState<CarList[]>([]);
@@ -66,7 +68,7 @@ const Catalog = () => {
                   }}
                   placeholder="Choose a company.."
                 >
-                  <option value={""}></option>
+                  <option value={""}>Company</option>
                   {companyList.map((company, i) => (
                     <>
                       <option key={i} value={`${company}`}>
@@ -90,7 +92,17 @@ const Catalog = () => {
         </>
       ) : (
         <>
-          <div>loading</div>
+          <div className="w-screen h-40 flex-col-reverse flex items-center justify-center mt-10 space-x-2">
+            <h2>Loading awesomeness <span className="animate-pulse">...</span></h2>
+            <Triangle
+              height="45"
+              width="45"
+              color="black"
+              ariaLabel="triangle-loading"
+              
+              visible={true}
+            />
+          </div>
         </>
       )}
     </div>

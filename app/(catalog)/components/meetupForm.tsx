@@ -67,7 +67,7 @@ const MeetupForm = ({ carid, id }: { carid: number; id: string }) => {
       FormData,
       FormDate ? FormDate.toISOString() : new Date().toISOString()
     );
-    if (res) return toast.error("Error in booking the car");
+    if (!res) return toast.error("Error in booking the car");
     toast.success("Car Booked Successfully");
     router.refresh();
   };

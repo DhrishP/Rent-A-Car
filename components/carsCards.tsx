@@ -29,8 +29,8 @@ const ProductCard = ({ data }: ProductCardProps) => {
   const rentprice = (data.price * 0.01) / data.yearsUsed;
   return (
     <>
-      <Dialog>
-        <div className="max-w-xs rounded overflow-hidden shadow-md">
+      <Dialog >
+        <div className="max-w-xs rounded  overflow-hidden shadow-md">
           <div className="relative h-40">
             <Image
               src={data.image.url}

@@ -11,24 +11,24 @@ const Nav = () => {
 
   const handleClick = () => setToggle(!toggle);
   return (
-    <div className="flex justify-between pt-0 items-center w-full mt-5 sticky top-0 z-20  ">
+    <div className="flex justify-between items-center md:items-start w-full mt-5 sticky top-0   ">
       <Link
         href={"/"}
-        className="inline-flex items-center pl-9 gap-[14px] relative"
+        className="inline-flex md:flex   items-center  md:gap-[0px] pl-9 gap-[14px] relative sm:bottom-4 md:bottom-8 "
       >
         {" "}
         <Image
-          className="relative w-[30px] h-[30px]"
+          className="relative w-32 h-32"
           alt="Group"
-          src="/logo.svg"
-          width={50}
-          height={50}
+          src="/log.png"
+          width={100}
+          height={100}
         />
         <div className="relative w-fit [font-family:'Inter-Bold',Helvetica] hidden lg:flex font-bold text-white text-[20px] tracking-[0] leading-[normal] whitespace-nowrap">
-          LingoSafari
+          Rent-a-car
         </div>
       </Link>
-      <div className="pr-5 hidden lg:flex gap-5 items-center">
+      <div className="pr-5  hidden lg:flex gap-5 items-center">
         <div className="px-1 text-md">
           <a href="/" className="px-4 hover:underline transition-colors">
             Home
