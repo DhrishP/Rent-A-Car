@@ -4,12 +4,20 @@ import React from "react";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 const Nav = () => {
   const menu = "/menu.svg";
   const cross = "/public/cross.svg";
   const [toggle, setToggle] = useState(false);
 
   const handleClick = () => setToggle(!toggle);
+  const navelements = [
+    { name: "Home", url: "/" },
+    {name:"Add Car",url:"/carform"},
+  ]
+  const path = usePathname()
+  
   return (
     <div className="flex justify-between items-center md:items-start w-full mt-5 sticky top-0   ">
       <Link
@@ -29,16 +37,22 @@ const Nav = () => {
         </div>
       </Link>
       <div className="pr-5  hidden lg:flex gap-5 items-center">
-        <div className="px-1 text-md">
-          <a href="/" className="px-4 hover:underline transition-colors">
-            Home
-          </a>
-          <a href="/carform" className="px-4 hover:underline transition-colors">
-            About
-          </a>
-          <a href="#" className="px-4 hover:underline transition-colors">
-            Contact
-          </a>
+        <div className="px-1 text-md flex items-center justify-center">
+          {navelements.map((element) => (
+        
+            <Link className={`px-4 ` } key={element.url} href={element.url}>
+             
+              {element.name}
+              {path === element.url && (
+              <motion.span 
+              layoutId="underline"
+              className="relative left-0  block h-[1px] w-full  bg-primary"/>   
+              
+                         )
+            }
+            </Link>
+            
+          ))}
         </div>
         <div className="flex items-center space-x-5">
           <UserButton afterSignOutUrl="/" />
