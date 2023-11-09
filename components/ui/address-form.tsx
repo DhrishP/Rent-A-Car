@@ -1,54 +1,78 @@
-import { FormWrapper } from "./form-wrapper"
-
+import { FormWrapper } from "./form-wrapper";
+import { carTypes, fuelTypes } from "@/lib/carData";
 type AddressData = {
-  street: string
-  city: string
-  state: string
-  zip: string
-}
+  carType: string;
+  fuelType: string;
+  yearsUsed: number;
+  price: number;
+  mileage: number;
+};
 
 type AddressFormProps = AddressData & {
-  updateFields: (fields: Partial<AddressData>) => void
-}
+  updateFields: (fields: Partial<AddressData>) => void;
+};
 
 export function AddressForm({
-  street,
-  city,
-  state,
-  zip,
+  carType,
+  fuelType,
+  yearsUsed,
+  price,
+  mileage,
   updateFields,
 }: AddressFormProps) {
   return (
     <FormWrapper title="Address">
-      <label>Street</label>
-      <input
-        autoFocus
+      <label className="font-semibold ">Car type</label>
+      <select
         required
-        type="text"
-        value={street}
-        onChange={e => updateFields({ street: e.target.value })}
+        value={carType}
+        className="capitalize"
+        onChange={(e) => updateFields({ carType: e.target.value })}
+      >
+        <option value="">Select a car type...</option>
+        {carTypes.map((type) => (
+          <option className="capitalize" key={type} value={type}>
+            {type}
+          </option>
+        ))}
+      </select>
+      <label className="font-semibold ">Fuel Type</label>
+      <select
+        required
+        value={fuelType}
+        className="capitalize"
+        onChange={(e) => updateFields({ fuelType: e.target.value })}
+      >
+        <option value="">Select a fuel type...</option>
+        {fuelTypes.map((type) => (
+          <option className="capitalize" key={type} value={type}>
+            {type}
+          </option>
+        ))}
+      </select>
+      <label className="font-semibold ">Years Used</label>
+      <input
+        required
+        type="number"
+        max={5}
+        value={yearsUsed}
+        onChange={(e) => updateFields({ yearsUsed: Number(e.target.value) })}
       />
-      <label>City</label>
+      <label className="font-semibold ">Mileage</label>
       <input
         required
-        type="text"
-        value={city}
-        onChange={e => updateFields({ city: e.target.value })}
+        type="number"
+        value={mileage}
+        onChange={(e) => updateFields({ mileage: Number(e.target.value) })}
       />
-      <label>State</label>
+      <label className="font-semibold ">Price</label>
       <input
         required
-        type="text"
-        value={state}
-        onChange={e => updateFields({ state: e.target.value })}
-      />
-      <label>Zip</label>
-      <input
-        required
-        type="text"
-        value={zip}
-        onChange={e => updateFields({ zip: e.target.value })}
+        type="number"
+        value={price}
+        min={10000}
+        onChange={(e) => updateFields({ price: Number(e.target.value) })}
       />
     </FormWrapper>
-  )
+  );
 }

@@ -14,44 +14,38 @@ const Nav = () => {
   const handleClick = () => setToggle(!toggle);
   const navelements = [
     { name: "Home", url: "/" },
-    {name:"Add Car",url:"/carform"},
-  ]
-  const path = usePathname()
-  
+    { name: "Add Car", url: "/carform" },
+  ];
+  const path = usePathname();
+
   return (
-    <div className="flex justify-between items-center md:items-start w-full mt-5 sticky top-0   ">
+    <div className="flex h-[8vh] justify-between items-center md:items-start w-full mt-5 sticky top-0   ">
       <Link
         href={"/"}
-        className="inline-flex md:flex   items-center  md:gap-[0px] pl-9 gap-[14px] relative sm:bottom-4 md:bottom-8 "
+        className=" inline-flex md:flex items-center md:gap-[0px] gap-[14px]     relative  "
       >
         {" "}
         <Image
-          className="relative w-32 h-32"
+          className=" md:h-44 h-36 w-36 md:w-44 md:bottom-12 bottom-0 relative"
           alt="Group"
           src="/log.png"
           width={100}
           height={100}
         />
-        <div className="relative w-fit [font-family:'Inter-Bold',Helvetica] hidden lg:flex font-bold text-white text-[20px] tracking-[0] leading-[normal] whitespace-nowrap">
-          Rent-a-car
-        </div>
+  
       </Link>
       <div className="pr-5  hidden lg:flex gap-5 items-center">
         <div className="px-1 text-md flex items-center justify-center">
           {navelements.map((element) => (
-        
-            <Link className={`px-4 ` } key={element.url} href={element.url}>
-             
+            <Link className={`px-4 `} key={element.url} href={element.url}>
               {element.name}
               {path === element.url && (
-              <motion.span 
-              layoutId="underline"
-              className="relative left-0  block h-[1px] w-full  bg-primary"/>   
-              
-                         )
-            }
+                <motion.span
+                  layoutId="underline"
+                  className="relative left-0  block h-[1px] w-full  bg-primary"
+                />
+              )}
             </Link>
-            
           ))}
         </div>
         <div className="flex items-center space-x-5">
@@ -80,13 +74,17 @@ const Nav = () => {
         }
       >
         <li>
-          <a href="#" className=" hover:underline transition-colors">Home</a>
+          <a href="#" className=" hover:underline transition-colors">
+            Home
+          </a>
         </li>
         <li>
           <a href="# hover:underline transition-colors">About</a>
         </li>
         <li>
-          <a className="hover:underline transition-colors" href="#">Contact us</a>
+          <a className="hover:underline transition-colors" href="#">
+            Contact us
+          </a>
         </li>
       </ul>
     </div>

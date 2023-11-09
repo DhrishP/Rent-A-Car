@@ -115,3 +115,6 @@ export const BookCar = async (formdata:FormDataType, date:string) => {
   return res;
 };
 
+export const CreateCar = async(formdata:FormDataType,date:string)=>{
+  
+}
