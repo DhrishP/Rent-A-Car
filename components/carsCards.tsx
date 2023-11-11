@@ -33,7 +33,7 @@ const ProductCard = ({ data }: ProductCardProps) => {
         <div className="max-w-xs rounded  overflow-hidden shadow-md">
           <div className="relative h-40">
             <Image
-              src={data.image.url}
+              src={data.image.url?data.image.url:data.cloudinaryUrl?data.cloudinaryUrl:""}
               alt=""
               layout="fill"
               objectFit="cover"

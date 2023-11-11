@@ -1,10 +1,15 @@
 "use client";
 import { AccountForm } from "@/components/ui/account-form";
-import { AddressForm } from "@/components/ui/address-form";
+import { AddressForm } from "@/components/ui/details-form";
 import { UserForm } from "@/components/ui/user-form";
 import { useMultistepForm } from "@/hooks/use-multistep-form";
 import React, { FormEvent, useState } from "react";
-type FormData = {
+
+import { createCar } from "@/services";
+
+import toast from "react-hot-toast";
+
+export type FormData = {
   Carnamee: string;
   description: string;
   company: string;
@@ -13,8 +18,8 @@ type FormData = {
   yearsUsed: number;
   price: number;
   mileage: number;
-  email: string;
-  password: string;
+  Imageurl: string;
+  Model: string;
 };
 
 const INITIAL_DATA: FormData = {
@@ -26,11 +31,12 @@ const INITIAL_DATA: FormData = {
   yearsUsed: 0,
   price: 0,
   mileage: 0,
-  email: "",
-  password: "",
+  Imageurl: "",
+  Model: "",
 };
 const CarPage = () => {
   const [data, setData] = useState(INITIAL_DATA);
+  const [loading, setLoading] = useState(false);
   function updateFields(fields: Partial<FormData>) {
     setData((prev) => {
       return { ...prev, ...fields };
@@ -47,12 +53,26 @@ const CarPage = () => {
       />,
     ]);
 
-  function onSubmit(e: FormEvent) {
-    e.preventDefault();
-    if (!isLastStep) return next();
-    console.log(data);
-    alert("Successful Account Creation");
+  async function onSubmit(e: FormEvent) {
+    try {
+      e.preventDefault();
+      setLoading(true);
+      if (!isLastStep) return next();
+      const res: string | undefined = await createCar(data);
+      if (!res) return toast.error("Error in creating car");
+      toast.success("Car created successfully");
+    } catch (error: any) {
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
   }
+  if (loading)
+    return (
+      <div className="flex w-screen h-screen items-center justify-center  ">
+        <span className="animate-spin text-xl">hi</span>
+      </div>
+    );
 
   return (
     <div className="h-[89.3vh] w-[100vw] bg-[url(https://i.pinimg.com/564x/81/29/c4/8129c47eea4ca2923d834a0daf316d72.jpg)] flex items-center justify-center">

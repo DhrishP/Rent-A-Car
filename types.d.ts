@@ -2,7 +2,7 @@ export type CarList = {
     id: string;
     name: string;
     image: {
-      url: string;
+      url: string?;
     };
     yearsUsed: number;
     company: string;
@@ -12,8 +12,9 @@ export type CarList = {
     carType: string;
     createdAt: string;
     mileage: number;
-    description: string;
+    description: string?;
     carId: number;
+    cloudinaryUrl: string?;
   };
   
   export type Cars = {
