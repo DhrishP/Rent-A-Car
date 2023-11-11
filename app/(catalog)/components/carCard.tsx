@@ -13,7 +13,7 @@ const CarCard = ({data}:ProductCardProps) => {
     <div className="flex flex-col  space-y-2">
     <div className="relative h-40">
       <Image
-        src={data.image.url}
+        src={data.image.url?data.image.url:data.cloudinaryUrl?data.cloudinaryUrl:""}
         alt=""
         layout="fill"
         objectFit="cover"
