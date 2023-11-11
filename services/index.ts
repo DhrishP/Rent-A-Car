@@ -6,6 +6,7 @@ import {
 } from "@/types";
 import request, { gql } from "graphql-request";
 import toast from "react-hot-toast";
+import { getLoc } from "@/utils/get-loc";
 type locationresprops = {
   cars: LocationCar[];
 };
@@ -156,15 +157,3 @@ try {
 
 
 
-const getLoc = async (): Promise<GeolocationPosition> => {
-  return new Promise((resolve, reject) => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        resolve(position);
-      },
-      (error) => {
-        reject(error);
-      }
-    );
-  });
-};

@@ -1,5 +1,5 @@
 import { FormWrapper } from "./form-wrapper";
-import { carTypes, fuelTypes } from "@/lib/carData";
+import { carTypes, fuelTypes } from "@/carData";
 type AddressData = {
   carType: string;
   fuelType: string;
