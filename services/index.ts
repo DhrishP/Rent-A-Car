@@ -1,12 +1,10 @@
 import { FormData } from "@/app/carform/page";
-import {
-  CarList,
-   LocationCar,
-  RequestOptions,
-} from "@/types";
+import prisma from "@/prisma/client";
+import { CarList, LocationCar, RequestOptions } from "@/types";
 import request, { gql } from "graphql-request";
 import toast from "react-hot-toast";
 import { getLoc } from "@/utils/get-loc";
+import { useAuth } from "@clerk/nextjs";
 type locationresprops = {
   cars: LocationCar[];
 };
@@ -112,48 +110,10 @@ export const BookCar = async (formdata: FormDataType, date: string) => {
       }
     }
   `;
-
   const res = await request(
     process.env.NEXT_PUBLIC_GRAHPQL_ENDPOINT as string,
     mutationQuery
   );
-
   return res;
 };
-
-export const createCar =async (data: FormData) => {
-try {
-  const location = await getLoc();
-  const mutationQuery = gql`
-  mutation MyMutation {
-  createCar(
-    data: {
-      name: "${data.Carnamee}",
-      company: "${data.company}",
-      carType: ${data.carType},
-      model: "${data.Model}",
-      yearsUsed: ${data.yearsUsed},
-      price: ${data.price},
-      mileage: ${data.mileage},
-      location: {latitude: ${location.coords.latitude}, longitude: ${location.coords.longitude}}, 
-      fuelType: ${data.fuelType},
-      cloudinaryUrl: "${data.Imageurl}"
-    }
-  ){
-    id
-  }
-}
-  `
- 
-  const res:string = await request(process.env.NEXT_PUBLIC_GRAHPQL_ENDPOINT as string, mutationQuery
-    )
-  return res
-} catch (error) {
-  toast.error("Error in creating car");
-  console.log(error)
-}
-
-}
-
-
 
