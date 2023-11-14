@@ -1,12 +1,10 @@
 import prisma from "@/prisma/client";
-
 import { auth } from "@clerk/nextjs";
 import request, { gql } from "graphql-request";
 
 
 export  async function POST(req: Request) {
   const  data  = await req.json();
-    console.log(data)
   if(!data.Carnamee ) return Response.json({message: "Please fill all the fields"}, {status: 400})
   const { userId } = auth();
   if (!userId)
@@ -33,20 +31,19 @@ export  async function POST(req: Request) {
     }
   }
     `;
-
     const res: string = await request(
       process.env.NEXT_PUBLIC_GRAHPQL_ENDPOINT as string,
       mutationQuery
     );
-    if (!res || !userId) return Response.json({ message: "No user found" } , { status: 400 });
-    prisma.userCar.create({
+    if (!res || !userId) return Response.json({ message: "Something went wrong" } , { status: 400 });
+    await prisma.userCar.create({
       data: {
         userid: userId,
         isPosted: true,
         isVerified: false,
       },
     });
-    prisma.car.create({
+    await prisma.car.create({
       data: {
         Carnamee: data.Carnamee,
         company: data.company,
@@ -61,7 +58,6 @@ export  async function POST(req: Request) {
         user_id: userId,
       },
     });
-    console.log(userId);
     return Response.json(res);
   } catch (error) {
     console.log(error);
