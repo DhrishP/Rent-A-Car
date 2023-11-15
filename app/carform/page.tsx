@@ -4,13 +4,11 @@ import { AddressForm } from "@/components/ui/details-form";
 import { UserForm } from "@/components/ui/user-form";
 import { useMultistepForm } from "@/hooks/use-multistep-form";
 import React, { FormEvent, useState } from "react";
-
-
-
 import toast from "react-hot-toast";
 import { AlertModal } from "@/components/ui/alert-modal";
 import axios from "axios";
 import { getLoc } from "@/utils/get-loc";
+import { InfinitySpin } from "react-loader-spinner";
 
 export type FormData = {
   Carnamee: string;
@@ -23,10 +21,10 @@ export type FormData = {
   mileage: number;
   Imageurl: string;
   Model: string;
-  location:{
-    latitude:number,
-    longitude:number
-  }
+  location: {
+    latitude: number;
+    longitude: number;
+  };
 };
 
 const INITIAL_DATA: FormData = {
@@ -40,10 +38,10 @@ const INITIAL_DATA: FormData = {
   mileage: 0,
   Imageurl: "",
   Model: "",
-  location:{
-    latitude:0,
-    longitude:0
-  }
+  location: {
+    latitude: 0,
+    longitude: 0,
+  },
 };
 const CarPage = () => {
   const [data, setData] = useState(INITIAL_DATA);
@@ -70,15 +68,24 @@ const CarPage = () => {
       e.preventDefault();
       setLoading(true);
       const location = await getLoc();
-      setData({...data, location:{latitude:location.coords.latitude,longitude:location.coords.longitude}  })
-      const res: string | undefined | null = await axios.post("/api/createcar",data);
+      setData({
+        ...data,
+        location: {
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+        },
+      });
+      const res: string | undefined | null = await axios.post(
+        "/api/createcar",
+        data
+      );
       if (!res) return toast.error("Error in creating car");
       toast.success("Car created successfully");
     } catch (error: any) {
       toast.error(error.message);
     } finally {
       setLoading(false);
-      setIsOpen(false)
+      setIsOpen(false);
     }
   }
   const onClose = () => {
@@ -86,8 +93,9 @@ const CarPage = () => {
   };
   if (loading)
     return (
-      <div className="flex w-screen h-screen items-center justify-center  ">
-        <span className="animate-spin text-xl">hi</span>
+      <div className="flex flex-col space-y-2 w-screen h-screen items-center justify-center  ">
+        <h2>Submitting</h2>
+        <InfinitySpin width="250" color="black" />
       </div>
     );
 

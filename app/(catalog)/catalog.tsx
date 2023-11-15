@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { getCars } from "@/services/index";
 import { CarList, Cars } from "@/types";
 import ProductCard from "@/components/carsCards";
-import { CarFront, CarFrontIcon } from "lucide-react";
 import { Triangle } from "react-loader-spinner";
 
 const Catalog = () => {
