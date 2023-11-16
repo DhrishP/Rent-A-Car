@@ -9,3 +9,26 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model UserCar {
+  userid     String    @id
+  isVerified Boolean @default(false)
+  isPosted   Boolean @default(false)
+  Car        Car[]   @relation("UserCar")
+}
+
+model Car {
+  id          Int     @id @default(autoincrement())
+  Carnamee    String
+  description String
+  company     String
+  carType     String
+  fuelType    String
+  yearsUsed   Int
+  price       Int
+  mileage     Int
+  Imageurl    String
+  Model       String
+  user_id     String
+  user        UserCar @relation("UserCar", fields: [user_id], references: [userid])
+}
