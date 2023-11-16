@@ -93,9 +93,9 @@ const CarPage = () => {
   };
   if (loading)
     return (
-      <div className="flex flex-col space-y-2 w-screen h-screen items-center justify-center  ">
+      <div className="flex flex-col  w-screen h-[75vh] items-center justify-center  ">
         <h2>Submitting</h2>
-        <InfinitySpin width="250" color="black" />
+        <InfinitySpin  width="180" color="black" />
       </div>
     );
 

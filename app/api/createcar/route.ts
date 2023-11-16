@@ -36,6 +36,10 @@ export  async function POST(req: Request) {
       mutationQuery
     );
     if (!res || !userId) return Response.json({ message: "Something went wrong" } , { status: 400 });
+    const doesUserExist = await prisma.userCar.findUnique({
+        where: { userid: userId },
+        });
+    if (!doesUserExist) {
     await prisma.userCar.create({
       data: {
         userid: userId,
@@ -43,6 +47,7 @@ export  async function POST(req: Request) {
         isVerified: false,
       },
     });
+}
     await prisma.car.create({
       data: {
         Carnamee: data.Carnamee,
